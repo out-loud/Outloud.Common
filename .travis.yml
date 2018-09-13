@@ -6,8 +6,8 @@ services:
 script:
   - ./scripts/start-ci.sh
   - ../Outloud/continuous-integration/git-pull.sh $PROJECT_NAME
-  - ../Outloud/continuous-integration/docker-build.sh $ENVIRONMENT
-  - ../Outloud/continuous-integration/docker-test.sh $IMAGE_NAME $ENVIRONMENT
+  - ../Outloud/continuous-integration/docker-build.sh $ENVIRONMENT $TRAVIS_BUILD_NUMBER $NUGET_API_KEY
+  - ../Outloud/continuous-integration/docker-test.sh $IMAGE_NAME $ENVIRONMENT $TRAVIS_BUILD_NUMBER $NUGET_API_KEY
 after_success:
   - ./scripts/docker-nuget-publish.sh $IMAGE_NAME $ENVIRONMENT $TRAVIS_BUILD_NUMBER $NUGET_API_KEY
 notifications:
