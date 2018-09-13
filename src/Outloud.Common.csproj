@@ -5,4 +5,8 @@
     <RootNamespace>Outloud.Common</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Sentry.AspNetCore" Version="1.0.0-rc2" />
+  </ItemGroup>
+
 </Project>
