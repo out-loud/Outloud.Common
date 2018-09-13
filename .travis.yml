@@ -1,0 +1,17 @@
+language: bash
+sudo: required
+dist: trusty
+services:
+  - docker
+script:
+  - ./scripts/start-ci.sh
+  - ../Outloud/continuous-integration/git-pull.sh $PROJECT_NAME
+  - ../Outloud/continuous-integration/docker-build.sh $ENVIRONMENT
+  - ../Outloud/continuous-integration/docker-test.sh $IMAGE_NAME $ENVIRONMENT
+after_success:
+  - ./scripts/docker-nuget-publish.sh $IMAGE_NAME $ENVIRONMENT $TRAVIS_BUILD_NUMBER $NUGET_API_KEY
+notifications:
+  slack: outloud-talk:TGwStb79G3lZNaeh7f5aiGIP
+  email:
+    on_success: never
+    on_failure: never
