@@ -24,7 +24,7 @@ namespace Outloud.Common.Swagger
 
             return services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info { Title = options.Title, Version = options.Version });
+                c.SwaggerDoc("v1", new Info { Title = options.Project, Version = options.Version });
             });
         }
 
