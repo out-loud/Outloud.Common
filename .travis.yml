@@ -10,6 +10,8 @@ script:
   - ../Outloud/continuous-integration/docker-test.sh $IMAGE_NAME $ENVIRONMENT $TRAVIS_BUILD_NUMBER $NUGET_API_KEY
 after_success:
   - ./scripts/docker-nuget-publish.sh $IMAGE_NAME $ENVIRONMENT $TRAVIS_BUILD_NUMBER $NUGET_API_KEY
+after_script:
+  - ../Outloud/continuous-integration/docker-clean.sh $ENVIRONMENT
 notifications:
   slack: outloud-talk:TGwStb79G3lZNaeh7f5aiGIP
   email:
