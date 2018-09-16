@@ -7,7 +7,7 @@ namespace Outloud.Common.Swagger
 {
     public static class Extensions
     {
-        public static IServiceCollection AddSwaggerDocs(this IServiceCollection services)
+        public static IServiceCollection AddSwagger(this IServiceCollection services)
         {
             SwaggerOptions options;
             using (var serviceProvider = services.BuildServiceProvider())
@@ -28,7 +28,7 @@ namespace Outloud.Common.Swagger
             });
         }
 
-        public static IApplicationBuilder UseSwaggerDocs(this IApplicationBuilder builder)
+        public static IApplicationBuilder UseSwagger(this IApplicationBuilder builder)
         {
             var options = builder.ApplicationServices.GetService<IConfiguration>()
                 .GetOptions<SwaggerOptions>("swagger");
@@ -37,7 +37,7 @@ namespace Outloud.Common.Swagger
                 return builder;
             }
 
-            builder.UseSwagger();
+            SwaggerBuilderExtensions.UseSwagger(builder);
             builder.UseSwaggerUI(c => {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
                 c.RoutePrefix = string.Empty;
